@@ -1,0 +1,5 @@
+__pycache__/
+keys.json
+*.mp3
+*.wav
+sampled*.txt
