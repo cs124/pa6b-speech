@@ -2,6 +2,19 @@
 
 In this assignment, you will convert sampled sentences into audio files using text-to-speech, and then transcribe the audio files back into text using speech-to-text.
 
+## Cloning the Assignment
+
+Select the folder in which you'd like to clone the assignment, and run the following commands in the command line to clone it.
+
+```
+cd folder/to/put/assignment
+git clone https://github.com/cs124/pa6b-speech.git
+```
+
+## Using a Text Editor
+Like PA6a, this assignment is not run on Jupyter Notebooks. This means that you may have to use a text editor (i.e., Visual Studio Code). For those of you that might not be familiar with this, please refer to this [guide](https://code.visualstudio.com/docs/getstarted/getting-started) to get started, or come to office hours!
+
+
 ## Environment Setup
 
 PA6b requires the Cartesia package. There are two ways to setup your environment:
@@ -43,7 +56,7 @@ export CARTESIA_API_KEY=your_api_key_here
 ```
 Replace `your_api_key_here` with the actual key you copied from the dashboard.
 
-**Important:** Never commit your API key to git or share it publicly. The `.gitignore` file is already configured to prevent this.
+**Important:** Cartesia's free tier API comes with a rate limit. While this rate limit is more than enough to complete this assignment, please beware of overusage.
 
 ## Part 1: Convert Sampled Sentences into Audio Files
 
@@ -78,15 +91,15 @@ Next, you should use the Cartesia API to transcribe the audio files into text. Y
 python speech_to_text.py
 ```
 
-We will include the transcribed file `sampled_sentences_speech.txt` in the submission as part of the grading. You are also encouraged to try what happens when you record yourself reading the sampled sentences in a noisy environment and transcribe the audio file back into text; and compare the quality of the transcription with the original sampled sentences.
+You will include the transcribed file `sampled_sentences_speech.txt` in the submission as part of the grading. You are also encouraged to try what happens when you record yourself reading the sampled sentences in a noisy environment and transcribe the audio file back into text; and compare the quality of the transcription with the original sampled sentences.
 
 ## Part 3: Error Analysis
 
-Now that you've run the TTS→STT pipeline, analyze what happened to your text by answering the questions in `responses.py`. Each question is defined as a function that should return a string with your answer.
+Now that you've run the TTS→STT pipeline, analyze what happened to your text by answering the questions in `responses.py`. Each question is defined as a function, where you should fill in your answer in the response strings.
 
 ### Question 1: Error Classification
 
-Compare your original `sampled_sentences.json` to the final `sampled_sentences_speech.txt`. Identify and describe three distinct types of errors or information loss you observe. For each type, provide a specific example from your results and explain what aspect of the TTS or STT process likely caused it.
+Compare your original `sampled_sentences.json` to the final `sampled_sentences_speech.txt`. Identify and describe three distinct types of errors or information loss you observe. For each type, provide a specific example from your results and explain what aspect of the TTS (text-to-speech) or STT (speech-to-text) process likely caused it.
 
 ### Question 2: Model Bias and Training Data
 
