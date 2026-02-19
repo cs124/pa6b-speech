@@ -13,7 +13,8 @@ def question_1():
     sampled_sentences_speech.txt. Identify and describe three distinct 
     types of errors or information loss you observe. For each type, 
     provide a specific example from your results and explain what aspect 
-    of the TTS or STT process likely caused it.
+    of the TTS (text-to-speech) or STT (speech-to-text) process likely 
+    caused it.
     """
 
     # TODO: Your answer below
@@ -101,11 +102,11 @@ def question_6():
     """
     Question 6: Compare and Contrast
     
-    Given your manual transcription, note every instance where the AI model 
-    hallucinated a word, skipped a phrase, or sanitized the speech by removing 
-    pauses and stutters. What do you notice about the model's failures?
+    Given your manual transcription above, note every instance where the AI 
+    model hallucinated a word, skipped a phrase, or sanitized the speech by 
+    removing pauses and stutters. What do you notice about the model's failures?
     
-    Include in your response:
+    In your response, include:
     - Your manual transcription
     - The AI transcription (from test_transcription_output.txt)
     - Your analysis
