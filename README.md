@@ -109,7 +109,84 @@ Based on the errors you observed, what can you infer about the training data or 
 
 Your original text likely had formatting elements (capitalization, line breaks, punctuation, etc.) that disappeared in the final transcription. Choose one formatting element that was lost and explain: (a) Why current speech systems can't preserve it, and (b) What would be required to preserve it in a future system.
 
-## Part 4: Zip and Submit 
+## Part 4: Ethics of Automated Transcription & Accessibility
+
+In Part 2, you transcribed audio into text. While tools like YouTube's auto-captions provide a level of instant accessibility, they have been the subject of significant legal debate. Organizations like the National Association of the Deaf (NAD) have successfully sued major institutions because automated captions often fail the equitable access standard required by laws like the Americans with Disabilities Act (ADA).
+
+Answer the following questions in `responses.py`.
+
+### Question 4: The "Good Enough" Threshold
+
+Disability law often reduces accommodation quality to a single metric like word error rate, yet this ignores dimensions like subtitle timing, speaker identification, or tonal cues — things human captioners naturally attend to. What does it mean for access to collapse something as multidimensional as communication into a single number? How do you view the relationship or difference between meeting legal requirements and providing equal access?
+
+### Question 5: The Curb-Cut Effect
+
+High-quality transcription is a classic example of universal design—a feature built for disability that benefits a much broader population. Beyond the D/deaf and hard-of-hearing communities, identify other groups who rely on these transcriptions. Do you rely on captions? How does a noticeably worse AI transcription impact their ability to engage with content?
+
+## Part 5: Stress-Testing ASR with Dialects and Dysfluency
+
+In this section, you will intentionally test the limits of the transcription model by providing it with speech that deviates from standard American or British English.
+
+### The Task:
+
+1. **Source or Record Audio**: Find or record a short audio clip (10-15 seconds) featuring a strong regional dialect, a non-native English accent, or speech containing natural dysfluencies (stutters, long pauses, or "um/uh" fillers).
+
+   - **Keep your clip to 10-15 seconds.** If your recording is longer, trim it before using it. On macOS, you can open the file in QuickTime Player, go to Edit > Trim, and drag the handles to select the portion you want. On Windows, you can use the built-in Video Editor (search "Video Editor" in the Start menu) or the Photos app to trim.
+   - The Cartesia API accepts many common audio formats: `.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`, `.flac`, `.ogg`, `.webm`. So if you record on your phone (which typically saves as `.m4a`) or screen-record on your Mac (which saves as `.mov`), you can use that file directly without converting.
+   - Some ideas for where to find clips:
+     - **Record on your phone**: Use the Voice Memos app (iPhone) or Sound Recorder (Android), then transfer the file to your computer (e.g., via AirDrop, email, or Google Drive).
+     - **Record on your computer**: On macOS, open QuickTime Player > File > New Audio Recording. On Windows, open the Sound Recorder app.
+     - **Capture audio from a video (e.g., YouTube)**:
+       - **macOS**: Press `Cmd + Shift + 5`. In the toolbar that appears at the bottom of your screen, click either **Record Entire Screen** or **Record Selected Portion**. Click **Options** and under **Microphone**, select your microphone or built-in audio to make sure audio is captured. Click **Record**, then play the video. When done, press `Cmd + Ctrl + Esc` to stop recording. The file will be saved to your Desktop as a `.mov` file.
+       - **Windows**: Press `Win + G` to open the Xbox Game Bar. In the **Capture** widget, click the microphone icon to make sure audio recording is enabled. Click the **Record** button (the circle icon) to start recording, then play the video. When done, click the **Stop** button (the square icon) in the floating recording toolbar. The file will be saved to `Videos > Captures` as an `.mp4` file.
+       - The Cartesia API accepts `.mov` and `.mp4` directly, so no conversion is needed.
+
+2. **Move your audio file into the assignment folder**: The `test_transcription.py` script looks for your audio file relative to where it lives, so your clip needs to be in the same folder. You can do this by either:
+   - Dragging the file into the assignment folder using Finder (macOS) or File Explorer (Windows)
+   - Or using the terminal:
+     ```
+     cp ~/Desktop/my_clip.mov .
+     ```
+     This copies a file called `my_clip.mov` from your Desktop into the current directory. Replace `~/Desktop/my_clip.mov` with wherever your file actually is (e.g., `~/Downloads/recording.m4a`). Make sure your terminal is in the assignment directory first — you can check with `pwd` and navigate there with `cd`.
+
+3. **Run Transcription**: Use the `test_transcription.py` script to transcribe your audio clip.
+   - Open `test_transcription.py` and update line 7 to the filename of your audio clip. For example, if your file is called `my_clip.mov`, change:
+     ```python
+     audio_filepath = "your_audio_clip.wav"
+     ```
+     to:
+     ```python
+     audio_filepath = "my_clip.mov"
+     ```
+     The filename must match exactly (including the extension) and the file must be in the same folder as the script.
+   - Run the script:
+   ```
+   python test_transcription.py
+   ```
+   - The transcription will be saved to `test_transcription_output.txt` in the same folder.
+
+4. **Manual Comparison**: Listen to your audio clip and manually transcribe it yourself -- write down exactly what was said, including any pauses, stutters, and non-standard pronunciations. You'll compare this to the AI transcription in the questions below.
+
+Now answer the following questions in `responses.py` based on your observations:
+
+### Question 6: Compare and Contrast
+
+Given your manual transcription above, note every instance where the AI model hallucinated a word, skipped a phrase, or sanitized the speech by removing pauses and stutters. What do you notice about the model's failures?
+
+In your response, include:
+- Your manual transcription
+- The AI transcription (from `test_transcription_output.txt`)
+- Your analysis
+
+### Question 7: Whose Voice Gets Transcribed?
+
+These systems have real stakes — an automated transcription used in a job interview, a 911 call, or a courtroom can fail certain speakers entirely.
+
+Research shows that ASR model performance varies significantly across different speakers. Do you find these patterns of performance variation in your data, or does your clip tell a different story? Does what you observed correspond with your own experience using voice systems like Siri, Google Assistant, customer service phone trees, or your car's navigation?
+
+What does either result reveal about the assumptions baked into these systems about what counts as the default way of speaking?
+
+## Part 6: Zip and Submit 
 
 Run `bash create_assignment_zip.sh` to zip your submission and submit the zip file to Gradescope.
 
@@ -117,6 +194,7 @@ To recap, the submission zip should include the following files:
 
 - `sampled_sentences_speech.wav`: the audio file generated from your sampled sentences
 - `sampled_sentences_speech.txt`: the transcribed text of the audio file
+- `test_transcription_output.txt`: the transcribed text of your dialect/dysfluency test clip
 - `responses.py`: your answers to the error analysis questions
 
 **Note:** Because your submission includes a large audio file, the upload and grading on Gradescope may take longer than usual. This is normal -- please be patient and wait for it to complete.

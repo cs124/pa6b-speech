@@ -1,1 +1,1 @@
-zip submission.zip sampled_sentences_speech.txt sampled_sentences_speech.wav responses.py
+zip submission.zip sampled_sentences_speech.txt sampled_sentences_speech.wav test_transcription_output.txt responses.py
